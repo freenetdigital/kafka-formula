@@ -2,3 +2,7 @@ kafka:
     env:
         user: kafka
         group: kafka
+    version:
+        kafka: 0.10.1.1
+        scala: 2.11
+        source_hash: 6d996946ee5d798f0af8ffa2bddc1dc23632761488556e765ba731acae28e2d65f4ca3f0648caa7bbb14947daf3e1862d9959f271eff5e0625c780a7169c6f72

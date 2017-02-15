@@ -30,6 +30,11 @@ It downloads and extracts Kafka binaries from the tarball.
 
 It configures the Kafka broker.
 
+``kafka.systemd``
+-------------------
+
+It adds and enables a systemd unit for the Kafka broker.
+
 References
 ==========
 

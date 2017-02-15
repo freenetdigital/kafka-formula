@@ -16,7 +16,7 @@ Available states
     :local:
 
 ``kafka.user``
----------------
+--------------
 
 It creates the ``kafka`` user and group.
 
@@ -24,6 +24,11 @@ It creates the ``kafka`` user and group.
 ------------------
 
 It downloads and extracts Kafka binaries from the tarball.
+
+``kafka.configure``
+-------------------
+
+It configures the Kafka broker.
 
 References
 ==========

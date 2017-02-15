@@ -15,10 +15,15 @@ Available states
 .. contents::
     :local:
 
-```kafka.user``
+``kafka.user``
 ---------------
 
 It creates the ``kafka`` user and group.
+
+``kafka.binaries``
+------------------
+
+It downloads and extracts Kafka binaries from the tarball.
 
 References
 ==========

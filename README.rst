@@ -15,6 +15,11 @@ Available states
 .. contents::
     :local:
 
+```kafka.user``
+---------------
+
+It creates the ``kafka`` user and group.
+
 References
 ==========
 

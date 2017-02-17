@@ -28,3 +28,4 @@ delete_kafka_dirs:
         - names:
             - /opt/kafka_{{ kafka_settings.version.scala }}-{{ kafka_settings.version.kafka }}
             - /opt/kafka
+            - {{ kafka_settings.conf.get('log.dirs') }}

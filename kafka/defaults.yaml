@@ -1,13 +1,30 @@
 kafka:
-    env:
-        user: kafka
-        group: kafka
-    version:
-        kafka: 0.10.1.1
-        scala: 2.11
-        source_hash: 6d996946ee5d798f0af8ffa2bddc1dc23632761488556e765ba731acae28e2d65f4ca3f0648caa7bbb14947daf3e1862d9959f271eff5e0625c780a7169c6f72
-    # See: https://kafka.apache.org/documentation/#brokerconfigs
-    conf:
-        broker.id: -1
+    # Kafka user and group
+    user: kafka
+    group: kafka
+    # Binaries settings
+    home: /opt/kafka
+    kafka_version: 0.10.2.1
+    scala_version: 2.12
+    mirror: http://it.apache.contactlab.it
+    # Systemd unit name
+    service: kafka
+    # Java options
+    java_home: /opt/java/jdk1.8.0_131
+    heap_opts: "-Xmx512M -Xms256M"
+    # Server (broker) settings
+    server_conf:
+        broker.id: 0
         log.dirs: /tmp/kafka-logs
+        log.retention.check.interval.ms: 300000
+        log.retention.hours: 168
+        log.segment.bytes: 1073741824
+        num.io.threads: 8
+        num.network.threads: 3
+        num.partitions: 1
+        num.recovery.threads.per.data.dir: 1
+        socket.receive.buffer.bytes: 102400
+        socket.request.max.bytes: 104857600
+        socket.send.buffer.bytes: 102400
+        zookeeper.connection.timeout.ms: 6000
         zookeeper.connect: "localhost:2181"

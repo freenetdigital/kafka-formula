@@ -1,12 +1,12 @@
-{% from 'kafka/map.jinja' import kafka_settings with context %}
+{% from 'kafka/map.jinja' import kafka with context %}
 
 delete_systemd_unit:
     service.dead:
-        - name: kafka-broker
+        - name: {{ kafka.service }}
         - enable: False
 
     file.absent:
-        - name: /etc/systemd/system/kafka-broker.service
+        - name: /etc/systemd/system/{{ kafka.service }}.service
 
     module.run:
         - name: service.systemctl_reload
@@ -15,17 +15,17 @@ delete_systemd_unit:
 
 delete_kafka_user:
     user.absent:
-        - name: {{ kafka_settings.env.user }}
+        - name: {{ kafka.user }}
 
 delete_kafka_group:
     group.absent:
-        - name: {{ kafka_settings.env.group }}
+        - name: {{ kafka.group }}
         - require:
             - user: delete_kafka_user
 
 delete_kafka_dirs:
     file.absent:
         - names:
-            - /opt/kafka_{{ kafka_settings.version.scala }}-{{ kafka_settings.version.kafka }}
             - /opt/kafka
-            - {{ kafka_settings.conf.get('log.dirs') }}
+            - /var/lib/{{ kafka.user }}
+            - {{ kafka.server_conf.get('log.dirs') }}

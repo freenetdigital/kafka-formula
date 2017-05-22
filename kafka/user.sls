@@ -11,9 +11,9 @@ create_kafka_user:
         - groups:
             - {{ kafka.group }}
         - fullname: Kafka User
-        - shell: /bin/bash
+        - shell: /bin/false
         - empty_password: True
         - system: True
-        - home: {{ kafka.home }}
+        - home: /var/lib/{{ kafka.user }}
         - require:
             - group: create_kafka_group

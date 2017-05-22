@@ -1,12 +1,12 @@
-{% from 'kafka/map.jinja' import kafka_settings with context %}
+{% from 'kafka/map.jinja' import kafka with context %}
 
 kafka_systemd_unit:
     file.managed:
-        - name: /etc/systemd/system/kafka-broker.service
-        - source: salt://kafka/files/kafka-broker.service.jinja
+        - name: /etc/systemd/system/{{ kafka.service }}.service
+        - source: salt://kafka/files/service.jinja
         - template: jinja
         - context:
-            kafka_settings: {{ kafka_settings }}
+            kafka: {{ kafka }}
 
     module.run:
         - name: service.systemctl_reload
@@ -15,6 +15,6 @@ kafka_systemd_unit:
 
 kafka_enabled:
     service.enabled:
-        - name: kafka-broker
+        - name: {{ kafka.service }}
         - watch:
             - module: kafka_systemd_unit

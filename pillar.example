@@ -1,0 +1,13 @@
+#
+# Enables SSL connection with client authentication
+#
+
+kafka:
+    conf:
+        listeners: "PLAINTEXT://:9092,SSL://:9093"
+        ssl.keystore.location: "/opt/ssl/broker.keystore.jks"
+        ssl.keystore.password: "42CKpCUxS6RVKvV3"
+        ssl.key.password: "x8rajHuoSpiCEzIvWiWC5dTNox2DWKJX"
+        ssl.truststore.location: "/opt/ssl/broker.truststore.jks"
+        ssl.truststore.password: "7M9GR1EUTdtXDFb1"
+        ssl.client.auth: "required"

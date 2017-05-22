@@ -13,7 +13,7 @@
 
 {% do default_settings.kafka.update(os_family_map) %}
 
-{% set kafka_settings = salt['pillar.get'](
+{% set kafka = salt['pillar.get'](
         'kafka',
         default=default_settings.kafka,
         merge=True

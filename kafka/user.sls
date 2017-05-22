@@ -1,18 +1,19 @@
-{% from 'kafka/map.jinja' import kafka_settings with context %}
+{% from 'kafka/map.jinja' import kafka with context %}
 
 create_kafka_group:
     group.present:
-        - name: {{ kafka_settings.env.group }}
+        - name: {{ kafka.group }}
         - system: True
 
 create_kafka_user:
     user.present:
-        - name: {{ kafka_settings.env.user }}
+        - name: {{ kafka.user }}
         - groups:
-            - {{ kafka_settings.env.group }}
+            - {{ kafka.group }}
         - fullname: Kafka User
-        - shell: /bin/bash
+        - shell: /bin/false
         - empty_password: True
         - system: True
+        - home: /var/lib/{{ kafka.user }}
         - require:
             - group: create_kafka_group

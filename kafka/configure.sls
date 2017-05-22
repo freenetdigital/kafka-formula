@@ -1,10 +1,10 @@
-{% from 'kafka/map.jinja' import kafka_settings with context %}
+{% from 'kafka/map.jinja' import kafka with context %}
 
 server_properties:
     file.managed:
-        - name: /opt/kafka/config/server.properties
+        - name: {{ kafka.home }}/config/server.properties
         - source: salt://kafka/files/server.properties.jinja
         - template: jinja
         - context:
-            conf: {{ kafka_settings.conf }}
+            conf: {{ kafka.server_conf }}
 

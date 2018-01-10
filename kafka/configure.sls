@@ -8,3 +8,11 @@ server_properties:
         - context:
             conf: {{ kafka.server_conf }}
 
+environment_file:
+    file.managed:
+        - name: {{ kafka.environment_file }}
+        - source: salt://kafka/files/environment.jinja
+        - template: jinja
+        - context:
+            kafka: {{ kafka }}
+

@@ -9,9 +9,10 @@ kafka:
     mirror: http://it.apache.contactlab.it
     # Systemd unit name
     service: kafka
+    environment_file: /etc/default/kafka
     # Java options
     java_home: /opt/java/jdk1.8.0_131
-    heap_opts: "-Xmx512M -Xms256M"
+    heap_opts: "-Xmx1G -Xms1G"
     # Server (broker) settings
     server_conf:
         broker.id: 0

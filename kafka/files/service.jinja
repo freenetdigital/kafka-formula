@@ -11,8 +11,14 @@ Type=simple
 PIDFile={{ kafka.home }}/kafka.pid
 User={{ kafka.user }}
 Group={{ kafka.group }}
-Environment=KAFKA_HEAP_OPTS={{ kafka.heap_opts }}
-Environment=JAVA_HOME={{ kafka.java_home }}
+
+# Set java.awt.headless=true if JAVA_OPTS is not set so the
+# # Xalan XSL transformer can work without X11 display on JDK 1.4+
+Environment="JAVA_OPTS=-Djava.awt.headless=true"
+#
+# # Load any environment overrides from this file.
+EnvironmentFile=-{{ kafka.environment_file }}
+
 ExecStart={{ kafka.home }}/bin/kafka-server-start.sh {{ kafka.home }}/config/server.properties
 ExecStop={{ kafka.home }}/bin/kafka-server-stop.sh
 Restart=on-failure

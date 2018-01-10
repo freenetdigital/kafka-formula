@@ -1,4 +1,6 @@
 {% from 'kafka/map.jinja' import kafka with context %}
+include:
+  - kafka.configure
 
 kafka_systemd_unit:
     file.managed:
@@ -8,13 +10,11 @@ kafka_systemd_unit:
         - context:
             kafka: {{ kafka }}
 
-    module.run:
-        - name: service.systemctl_reload
-        - onchanges:
-            - file: kafka_systemd_unit
-
 kafka_enabled:
-    service.enabled:
+    service.running:
+        - enable: True
         - name: {{ kafka.service }}
         - watch:
-            - module: kafka_systemd_unit
+            - file: environment_file
+            - file: server_properties
+            - file: kafka_systemd_unit

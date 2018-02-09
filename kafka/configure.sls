@@ -1,4 +1,5 @@
 {% from 'kafka/map.jinja' import kafka with context %}
+{% set log_dirs = salt['pillar.get']('kafka:server_conf:log.dirs', '/tmp/kafka-logs') %}
 
 server_properties:
     file.managed:
@@ -16,3 +17,8 @@ environment_file:
         - context:
             kafka: {{ kafka }}
 
+log.dirs_folder:
+    file.directory:
+        - name: {{ log_dirs }}
+        - runas: {{ kafka.user }}
+        - unless: test -f {{ log_dirs }}

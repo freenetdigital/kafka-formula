@@ -8,21 +8,23 @@ KAFKA_USER=kafka
 KAFKA_GROUP=kafka
 KAFKA_CONFIG=/etc/kafka
 
-# The default JMX_PORT for Kafka Brokers is 9999.
-# Set JMX_PORT to something else to override this.
+#JMX
 JMX_PORT=9999
 #KAFKA_JMX_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false"}
+
+# Default GC settings.
+# # LinkedIn recommended GC settings.  See: https://kafka.apache.org/081/ops.html
+# # You need Java 7 u51 or greater to use the G1 GC.
+# #KAFKA_JVM_PERFORMANCE_OPTS="-server -XX:PermSize=48m -XX:MaxPermSize=48m -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35"
+#KAFKA_JVM_PERFORMANCE_OPTS="-server -XX:+UseCompressedOops -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:+CMSScavengeBeforeRemark -XX:+DisableExplicitGC
+KAFKA_JVM_PERFORMANCE_OPTS="{{ kafka.jvm_performance_opts }}"
+
+KAFKA_HEAP_OPTS="{{ kafka.heap_opts }}"
+
+KAFKA_OPTS="{{ kafka.opts }}"
+
 
 # Memory sizes, and logging configuration
 #KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:/etc/kafka/log4j.properties"
 
-# Default GC settings.
-#KAFKA_JVM_PERFORMANCE_OPTS="-server -XX:+UseCompressedOops -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:+CMSScavengeBeforeRemark -XX:+DisableExplicitGC"
-# LinkedIn recommended GC settings.  See: https://kafka.apache.org/081/ops.html
-# You need Java 7 u51 or greater to use the G1 GC.
-#KAFKA_JVM_PERFORMANCE_OPTS="-server -XX:PermSize=48m -XX:MaxPermSize=48m -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35"
-KAFKA_JVM_PERFORMANCE_OPTS="{{ kafka.jvm_performance_opts }}"
-
-KAFKA_HEAP_OPTS="{{ kafka.heap_opts }}"
-KAFKA_OPTS="{{ kafka.opts }}"
 

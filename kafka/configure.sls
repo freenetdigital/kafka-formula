@@ -21,4 +21,6 @@ log.dirs_folder:
     file.directory:
         - name: {{ log_dirs }}
         - runas: {{ kafka.user }}
+        - user: {{kafka.user}}
+        - group: {{kafka.user}}
         - unless: test -f {{ log_dirs }}

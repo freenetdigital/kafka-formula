@@ -7,7 +7,7 @@ server_properties:
         - source: salt://kafka/files/server.properties.jinja
         - template: jinja
         - context:
-            conf: {{ kafka.server_conf }}
+            conf: {{ kafka.server_conf | tojson }}
 
 environment_file:
     file.managed:
